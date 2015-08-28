@@ -1,97 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
-	<script type="text/javascript" src="app.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" href="style.css">
-</head>
+    <head>
+        <title>Durandal</title>
+        
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="format-detection" content="telephone=no"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="bower_components/durandal/css/durandal.css" />
+        <link rel="stylesheet" href="style.css">
+
+        
+    </head>
 <body>
 
+<div id="applicationHost">
+            <div class="splash">
+                
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+        </div>
 
-<script type="text/html" id="tasks">
-		<div class="col-xs-10">
-		 <table class="table table-bordered">
-		    <thead>
-		        <tr>
-		            <th>Title</th>
-			        <th>Tasks</th>
-			        <th>Status</th>
-			        <th>Remove/edit</th>
-		        </tr>
-		    </thead>
-		    <tbody data-bind="foreach: tasks">
-		        <tr>
-		            <td data-bind="text: title"></td>
-		            <td>
-		            	<span  data-bind="text: text"></span>
-		            
-		            </td>
-	
-		            <td>
-		            <td>
-		            <a href="#" data-bind="click: $parent.removeTask">remove</a></td>
-		            </td>
-		        </tr>
-		    </tbody>
-		</table>
-		<button class="btn btn-success" data-bind="click: addTask">Add Task</button>
-		 </div> 
-
-</script>
-
-<script type="text/html" id="addTask">
-<div class="col-xs-10">
-	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Add task title" data-bind="value : title">
-	<textarea type="textarea" label="Text" placeholder="add new task" class="form-control" data-bind="value : text"></textarea>
-
-	<button class="btn btn-default btn btn-success" data-bind="click : add">add new task</button>
-	</div>	
-</script>
-
-
-<script type="text/html" id="projects">
-	<div class="container">
-		<h1>Projects</h1>
-		<div>
-			<ul class="list-group" data-bind="foreach: projects">
-  				<li class="list-group-item">
-	  				<span data-bind="text: title"></span>
-	  				<span data-bind="text: text"></span>
-	  				<button class="btn btn-default btn  btn-danger" data-bind="click: $parent.removeProject">remove</button>
-	  				
-  				</li>
-			</ul>
-		</div>
-		<button class="btn btn-default btn btn-success" data-bind="click : addProject">add new project</button>
-
-	</div>
-</script>
-
-
-
-<script type="text/html" id="addProject">
-	<div>
-	<label for="exampleInputEmail1">Project name</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" data-bind="value: title">
-    <label for="exampleInputEmail1">Project description</label>
-    <textarea class="form-control" rows="3" data-bind="value: text"></textarea>
-
-    	<button class="btn btn-default btn btn-success" data-bind="click : add">add new task</button>
-
-	</div>
-
-</script>
-
-
-<div  data-bind="with : content">
-		<!-- ko template:{ name : template, data : $data } -->
-		<!-- /ko -->
-		</div>
-
-
+   <script src="bower_components/requirejs/require.js" data-main="app/main"></script>
 </body>
 </html>
