@@ -3,13 +3,14 @@
 		<div>
 			<ul class="list-group" data-bind="foreach: projects">
   				<li class="list-group-item">
-	  				<span data-bind="text: title"></span>
+  					<a href="#" data-bind="attr: { href: '#/projects/' + id + '/tasks'}, text: title ">
+	  				</a>
 	  				<span data-bind="text: text"></span>
 	  				<button class="btn btn-default btn  btn-danger" data-bind="click: $parent.removeProject">remove</button>
 	  				
   				</li>
 			</ul>
 		</div>
-		<a href="#/addProject">Add project</a>
+		<a href="#" data-bind="click: addProject">Add project</a>
 
 	</div>

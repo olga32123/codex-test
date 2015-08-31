@@ -1,12 +1,15 @@
 define(function(require) {
     var ko = require('knockout');
     var $ = require('jquery');
+    var AddProject = require('./addProject')
 
 return function(){
 	var self = this;
 	self.projects = ko.observableArray([]);
 	self.addProject = function(){
-		
+		AddProject.show().then(function(data){
+			self.projects.push(data);
+		});
 	}
 	self.removeProject = function(project){
 			$.ajax({
@@ -25,7 +28,6 @@ return function(){
 			self.projects(json);
 		})
 	}
-	self.template = 'projects';
 }
 
 });

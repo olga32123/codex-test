@@ -1,6 +1,12 @@
-<div class="col-xs-10">
+	
+<div class="modal-content" style="max-width: 500px">
+    <div class="modal-header">
+
 	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Add task title" data-bind="value : title">
 	<textarea type="textarea" label="Text" placeholder="add new task" class="form-control" data-bind="value : text"></textarea>
+	
+	<div class="modal-footer">
+		<button class="btn btn-default btn btn-success" data-bind="click : add">add new task</button>
 
-	<button class="btn btn-default btn btn-success" data-bind="click : add">add new task</button>
 	</div>	
+</div>

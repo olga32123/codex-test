@@ -1,0 +1,76 @@
+<div class="container">
+	<ul class="list-group">
+		  <li class="list-group-item">
+		  <!-- 	<span class="task-title">Task title</span> -->
+		  	<span data-bind="text : title"> <span>
+		  </li>
+		  <li class="list-group-item">
+		<!--   <span class="task-title">Task discription</span> -->
+		  	<span data-bind="text: text"> <span>
+		  </li>
+	</ul>	  
+		  <div data-bind="visible: editMode">
+		  	<span>Task status</span>
+		  		<div class="input-group">
+		  			<span>New<span>
+	     			 <span class="input-group-addon">
+	       				 <input type="radio" aria-label="..." value="new" data-bind='checked: status'>
+	     			 </span>
+   				</div>
+   				<div class="input-group">
+		  			<span>In progress<span>
+	     			 <span class="input-group-addon">
+	       				 <input type="radio" aria-label="..." value="inprogress" data-bind='checked: status'>
+	     			 </span>
+   				</div>
+   				<div class="input-group">
+		  			<span>Complited<span>
+	     			 <span class="input-group-addon">
+	       				 <input type="radio" aria-label="..." value="complited" data-bind='checked: status'>
+	     			 </span>
+   				</div>
+		   </div>
+		   <div data-bind="visible: !editMode()">
+		   		<span data-bind="text: status"><span>
+		   </div>		 
+
+
+
+
+	<div class="comments container">
+	<div class="row">
+	<div class="col-md-12">
+		<ul class="list-group" data-bind="foreach: comments">
+			<li class="list-group-item">
+
+				<span data-bind="text: name" class="task-title"></span>
+			 	<span data-bind="text: message" class="task-title"></span>
+			 	<button class="btn btn-default btn  btn-danger" data-bind="click: $parent.removeComment">remove</button>
+
+			</li>
+		</ul>
+		<form role="form" id="contact-form" class="contact-form">              
+              <div class="form-group">
+                    <input data-bind="value: name" type="text" class="form-control" name="Name" autocomplete="off" id="Name" placeholder="Name">
+                </div>
+           </div>       
+      </div>
+
+      <div class="row">
+               <div class="col-md-12">
+                  		<div class="form-group">
+                            <textarea class="form-control textarea" data-bind="value: message" rows="3" name="Message" id="Message" placeholder="Message"></textarea>
+                  		</div>
+                </div>
+      </div>
+      <div class="row">
+                <div class="col-md-12">
+                  <button data-bind="click : addMessage" type="submit" class="btn main-btn pull-right">Send a message</button>
+      			 </div>
+     </div>
+         </form>
+	</div>
+
+
+
+		 </div> 

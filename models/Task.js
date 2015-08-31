@@ -17,6 +17,15 @@ module.exports = Waterline.Collection.extend({
         text: {
             type: 'text',
             required: true
+        },
+        projectId: {
+            model: 'projects',
+            required: true
+        },
+        status : {
+            type: 'string',
+            enum: ['new', 'inprogress', 'close'],
+            defaultsTo: 'new'
         }
     }
 });

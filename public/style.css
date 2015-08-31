@@ -1,20 +1,6 @@
- <script type="text/html" id="tasks">
-
- <div class="container">
- 	<div class="col-xs-10">
-		<ul class="list-group" data-bind="foreach : tasks">
- 			<li class="list-group-item">
-				<span data-bind="text : title" ></span>
-			</li>
-		</ul>
-	</div>
- 	<div class="wel"> 
- 			<div class="input-group">
-  				<input type="text" class="form-control" data-bind="value : title" placeholder="Add Task">
-  				<span class="input-group-btn">
-    				<button class="btn btn-default" data-bind="click : addTask" type="button">Add</button>
-  				</span>
-			</div>
-		</div>
-		 </div>
- </script>
+.details_color{
+	color: red;
+}
+.task-title{
+	display: block;
+}

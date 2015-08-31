@@ -1,53 +1,50 @@
+var ORM = require('./services/ORM');
+var CRUD = require('./services/CRUD');
+var config = require('./config.json');
+
+
 var express = require('express');
 var app = express();
 
-var bodyParser = require('body-parser');
+app.use(express.static('public'));
 
+app.use(require('cookie-parser')());
+app.use(require('cookie-session')({
+    secret: config.secret
+}));
 
-
-var http = require('http');
-var express = require('express');
-var bodyParser = require('body-parser');
- app.use(bodyParser.urlencoded({ extended: false }))
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-var projects = [{title : 't1w', text: "dd", id : 1}];
-
-app.use(express.static('public'));
-
-var ORM = require('./models/ORM');
-var config = require('./config.json');
-var _ = require('lodash');
-
-
-
-var ECT = require('ect');
-var ectRenderer = ECT({ watch: true, root: __dirname + '/views' });
-app.engine('.html', ectRenderer.render);
-app.set('view engine', 'html');
-
-
-
-// ORM.init(app, function(e){
-// 	app.use('/api/tasks', ORM.REST('tasks'))
-
-
-// 	app.use(ORM.middleware);
+var auth = require('./services/auth');
 
 ORM.init(app, function(e){
-	app.use('/api/tasks', ORM.REST('tasks'))
-	app.use('/api/projects', ORM.REST('projects'))
-
 	app.use(ORM.middleware);
+	
+	auth.init(app);
+
+
+	
+
+	app.get('/api/session', auth.checkAuth, auth.getCurrent)
+	app.post('/api/login', auth.login, auth.getCurrent)
+	app.post('/api/logout', auth.logout)
+
+	app.use('/api/projects/:projectId/tasks/:taskId/comments', CRUD.filters('taskId'), ORM.REST('comments'))
+	app.use('/api/projects/:projectId/tasks', CRUD.filters('projectId'), ORM.REST('tasks'));
+	app.use('/api/projects', ORM.REST('projects'))
+	
 
 
 
-var server = app.listen(3000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
 
-  console.log('Example app listening at http://%s:%s', host, port);
-});
 
+	var server = app.listen(3000, function () {
+  		var host = server.address().address;
+  		var port = server.address().port;
+
+  		console.log('Example app listening at http://%s:%s', host, port);
+	});
 })
